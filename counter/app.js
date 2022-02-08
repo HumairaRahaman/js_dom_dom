@@ -11,15 +11,15 @@ btns.forEach(function(btn){
         const styles = e.currentTarget.classList;
         if(styles.contains("decrease")){
             count--;
-            document.body.style.color = "red";
+            value.style.color = "red";
         }
         else if(styles.contains("increase")){
             count++;
-            document.body.style.color = "green";
+            value.style.color = "green";
         }
         else{
             count = 0;
-           
+           value.style.color = "hsl(209, 61%, 16%)";
         }
         value.textContent = count;
     })
