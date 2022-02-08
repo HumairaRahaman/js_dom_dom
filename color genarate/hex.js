@@ -13,6 +13,8 @@ btn.addEventListener('click', function(){
 
 });
 
+
+
 function getrandomNumber(){
     return Math.floor(Math.random() * hex.length);
 }
