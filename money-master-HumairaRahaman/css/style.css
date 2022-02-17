@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-transform: capitalize;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 100px 0;
+}
+header h2 {
+  margin: 20px 0;
+  color: cadetblue;
+  font-size: 60px;
+}
+section {
+  background-color: #b1fffe36;
+}
+
+.money-layout {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.money-img {
+  margin-top: 50px;
+  flex-basis: 50%;
+  display: flex;
+  align-items: center;
+  margin-left: 60px;
+}
+.money-img img {
+  width: 100%;
+  border-radius: 30px;
+}
+.money-calc {
+  flex-basis: 40%;
+  padding: 100px 20px;
+}
+.field-color {
+  background-color: #97d2013d;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.field-color-is {
+  background-color: #00843728;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* error */
+.error {
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+  background: #98d201;
+  margin-top: 20px;
+  border-radius: 15px;
+  padding: 5px 20px;
+  display: none;
+}
+.error-section {
+  width: 35%;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+/* media query */
+@media (max-width: 768px) {
+  .money-img {
+    margin-left: 0;
+  }
+}
