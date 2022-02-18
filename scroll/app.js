@@ -4,10 +4,80 @@
 //offsetTop - A Number, representing the top position of the element, in pixels
 
 // ********** set date ************
+const date = document.getElementById('date');
+date.innerHTML = new Date().getFullYear();
 
 // ********** close links ************
+const navToggle = document.querySelector('.nav-toggle');
+const linksContainer = document.querySelector('.links-container');
+const links = document.querySelector('.links');
 
+navToggle.addEventListener('click', function(){
+    // console.log('click');
+    // linksContainer.classList.toggle('show-links');
+    const containerHight = linksContainer.getBoundingClientRect().height;
+    const linksHight = links.getBoundingClientRect().height;
+
+    if (containerHight === 0){
+        linksContainer.style.height = `${linksHight}px`;
+
+    }
+    else{
+        linksContainer.style.height = 0;
+    }
+});
+
+
+
+const navbar = document.getElementById('nav');
+const topLink = document.querySelector('.top-link');
 // ********** fixed navbar ************
+window.addEventListener('scroll', function(){
+    const scrollHight = window.pageYOffset;
+    const navHight = navbar.getBoundingClientRect().height;
+
+    if(scrollHight > navHight){
+        navbar.classList.add('fixed-nav');
+    }
+    else{
+        navbar.classList.remove('fixed-nav');
+    }
+    if(scrollHight > 500){
+        topLink.classList.add('show-link');
+    }
+    else{
+        topLink.classList.remove('show-link');
+    }
+});
 
 // ********** smooth scroll ************
 // select links
+const scrollLink = document.querySelectorAll('.scroll-link');
+scrollLink.forEach(function(link){
+    link.addEventListener("click", function(e){
+        //prevent deafult
+        e.preventDefault();
+        //nevigate to specific spot
+        const id = e.currentTarget.getAttribute('href').slice(1);
+        // console.log(id)
+        const element = document.getElementById(id);
+        // calculate the hight
+        const navHight = navbar.getBoundingClientRect().height;
+        const containerHight = linksContainer.getBoundingClientRect().height;
+        const fixedNav = navbar.classList.contains("fixed-nav");
+        let position = element.offsetTop - navHight;
+        if(!fixedNav){
+            position = position -navHight;
+
+        }
+        if(navHight > 82){
+            position = position + containerHight;
+        }
+        window.scrollTo({
+            top:position,
+            left:0,
+        });
+        linksContainer.style.height = 0;
+
+    });
+});
