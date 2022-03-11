@@ -18,6 +18,7 @@ form.addEventListener('submit',addItem)
 //clear items
 clearBtn.addEventListener('click',clearItems)
 
+
 // ****** FUNCTIONS **********
 function addItem(e){
     e.preventDefault()
@@ -38,6 +39,13 @@ function addItem(e){
            <i class="fas fa-trash"></i>
          </button>
        </div>`
+
+  //delete btn
+  const deleteBtn = element.querySelector('.delete-btn')
+  const editBtn = element.querySelector('.edit-btn')
+  deleteBtn.addEventListener('click', deleteItem)
+  editBtn.addEventListener('click', editItem)
+  //append     
        list.appendChild(element)
        displayAlert('item added to the list', 'success')
        container.classList.add('show-container')
@@ -47,7 +55,11 @@ function addItem(e){
        setBackToDafult()
     }
     else if(value && editFlag){
-        console.log('editing')
+       editElement.innerHTML = value
+       displayAlert('value change','success')
+       //edit local storage
+       editLocalStorage(editId,value)
+       setBackToDafult()
     }
     else{
        displayAlert('please enter the value','danger')
@@ -77,6 +89,32 @@ function clearItems(){
     setBackToDafult()
     //localStorage.removeItem('list')
 }
+//edit function
+function editItem(e){
+    const element = e.currentTarget.parentElement.parentElement
+    //set edit item
+    editElement = e.currentTarget.parentElement.previousElementSibling
+    //set from value
+    grocery.value = editElement.innerHTML
+    editFlag = true
+    editId = element.dataset.id
+    submitBtn.textContent = 'edit'
+}
+//delete function
+function deleteItem(e) {
+    const element = e.currentTarget.parentElement.parentElement
+    const id = element.dataset.id
+  
+    list.removeChild(element)
+    console.log(list.children.length)
+  
+    if (list.children.length === 1) {
+      container.classList.remove("show-container")
+    }
+    displayAlert('item removed','danger')
+    setBackToDafult()
+    // remeveFormLocalStorage(id)
+}
 //set back to deafult
 function setBackToDafult(){
     grocery.value = ''
@@ -87,6 +125,12 @@ function setBackToDafult(){
 // ****** LOCAL STORAGE **********
 function addToLocalStorage(id,value){
     console.log('add to local storage')
+}
+function remeveFormLocalStorage(id){
+
+}
+function editLocalStorage(id,value){
+
 }
 
 // ****** SETUP ITEMS **********
